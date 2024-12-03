@@ -25,6 +25,22 @@ def star1(input):
     print(acc)
 
 
+def star2(input):
+    # Brute force - try removing every single one
+    acc = 0
+    for row in input:
+        if isSafe(row):
+            acc += 1
+        else:
+            for i in range(len(row)):
+                rowCopy = row.copy()
+                del rowCopy[i]
+                if isSafe(rowCopy):
+                    acc += 1
+                    break
+    print(acc)
+
+
 if __name__ == "__main__":
     input = load_input("input.txt")
-    star1(input)
+    star2(input)
