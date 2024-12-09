@@ -7,7 +7,6 @@ def load_input(filename):
 
 
 def isSafe(row):
-    max_diff = 0
     increasing = row[1] - row[0] > 0
     for i in range(len(row) - 1):
         diff = row[i + 1] - row[i]
