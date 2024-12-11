@@ -24,6 +24,20 @@ def multiply(tuples):
     return acc
 
 
-input = load_input("input.txt")
-tuples = detect_mul(input)
-multiply(tuples)
+def star1():
+    input = load_input("input.txt")
+    tuples = detect_mul(input)
+    multiply(tuples)
+
+
+def splittin(input):
+    input.split("do()")
+    print(input)
+
+
+def star2():
+    input = load_input("input.txt")
+    splittin(input)
+
+
+star2()
