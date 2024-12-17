@@ -17,26 +17,33 @@ def load_input(filename):
 
 def try_rule(update, rule):
     if rule[0] in update and rule[1] in update:
-        return update.index(rule[0]) < update.index(rule[1]), update.index(rule[1])
-    return True, 0
+        return (
+            update.index(rule[0]) < update.index(rule[1]),
+            update.index(rule[0]),
+            update.index(rule[1]),
+        )
+    return True, -1, -1
 
 
 def valid_update(update, page_rules):
     for rule in page_rules:
-        is_valid, invalid_index = try_rule(update, rule)
+        is_valid, i1, i2 = try_rule(update, rule)
         if not is_valid:
-            return False, invalid_index
-    return True, -1
+            return False, i1, i2
+    return True, -1, -1
 
 
-def valid_updates_sum(updates, page_rules):
+def validate_updates(updates, page_rules):
     acc = 0
     for update in updates:
-        is_valid, invalid_index = valid_update(update, page_rules)
-        if is_valid:
-            acc += int(update[len(update) // 2])
+        is_valid, i1, i2 = valid_update(update, page_rules)
+        while not is_valid:
+            update[i1], update[i2] = update[i2], update[i1]
+            is_valid, i1, i2 = valid_update(update, page_rules)
+            if is_valid:
+                acc += int(update[len(update) // 2])
     print(acc)
 
 
 page_rules, updates = load_input("input.txt")
-valid_updates_sum(updates, page_rules)
+validate_updates(updates, page_rules)
