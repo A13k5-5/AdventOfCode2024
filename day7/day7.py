@@ -9,17 +9,29 @@ def load_input(filename):
     return eqs
 
 
+def concat(a, b):
+    return int(str(a) + str(b))
+
+
 def perform_action(nums, operation, results):
     if len(nums) == 1:
         results.add(nums[0])
-        # print(nums[0])
         return
 
     new_nums = []
-    new_nums.append(nums[0] * nums[1] if operation == "mult" else nums[0] + nums[1])
+    first_num = 0
+    if operation == "mult":
+        first_num = nums[0] * nums[1]
+    elif operation == "add":
+        first_num = nums[0] + nums[1]
+    elif operation == "concat":
+        first_num = concat(nums[0], nums[1])
+
+    new_nums.append(first_num)
     new_nums += nums[2:]
     perform_action(new_nums, "mult", results)
     perform_action(new_nums, "add", results)
+    perform_action(new_nums, "concat", results)
 
 
 def star1():
@@ -31,9 +43,11 @@ def star1():
         results = set()
         perform_action(nums, "mult", results)
         perform_action(nums, "add", results)
+        perform_action(nums, "concat", results)
         if wanted_result in results:
             counter += wanted_result
     print(counter)
 
 
 star1()
+# print(concat(15, 16))
