@@ -1,3 +1,6 @@
+import math
+
+
 def load_input(filename):
     eqs = []
     with open(filename, "r") as input:
@@ -10,7 +13,8 @@ def load_input(filename):
 
 
 def concat(a, b):
-    return int(str(a) + str(b))
+    return int(str(a) + str(b))  # 18 seconds
+    # return int(math.pow(10, (int(math.log(b, 10)) + 1)) * a + b) # 18 seconds
 
 
 def perform_action(nums, operation, results):
