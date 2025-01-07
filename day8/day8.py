@@ -41,9 +41,10 @@ def star1():
                 # print(antenna, a)
                 # print(vector(antenna, a))
                 # print(add_vector(vector(antenna, a), a))
-                antinode = add_vector(vector(antenna, a), a)
-                if not out_of_map(map, antinode[0], antinode[1]):
+                antinode = add_vector(vector(antenna, a), antenna)
+                while not out_of_map(map, antinode[0], antinode[1]):
                     antinodes.add(antinode)
+                    antinode = add_vector(vector(antenna, a), antinode)
     print(len(antinodes))
 
 
