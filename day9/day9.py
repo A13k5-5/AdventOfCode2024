@@ -25,7 +25,7 @@ def id_mult(map):
     return acc
 
 
-def run():
+def star1():
     disk_map = load_input("input.txt")
     map = extract_map(disk_map)
     last = len(map) - 1
@@ -39,4 +39,32 @@ def run():
     print(id_mult(map))
 
 
-run()
+def find_last_file(disk):
+    i = len(disk) - 1
+    while disk[i][0] == None:
+        i -= 1
+    return i
+
+
+def find_first_space(disk):
+    i = 0
+    while disk[i][0] != None:
+        i += 1
+    return i
+
+
+def star2():
+    disk_map = load_input("input.txt")
+    print(disk_map)
+    disk = []
+    for i, num in enumerate(disk_map):
+        if i % 2 == 0:
+            disk.append((i // 2, num))
+        else:
+            disk.append((None, num))
+    print(disk)
+    last = find_last_file(disk)
+
+
+# star1()
+star2()
