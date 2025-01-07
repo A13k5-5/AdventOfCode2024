@@ -38,9 +38,6 @@ def star1():
         for i, antenna in enumerate(antenna_pos[antenna_type]):
             other_antennas = [a for a in antenna_pos[antenna_type] if a != antenna]
             for a in other_antennas:
-                # print(antenna, a)
-                # print(vector(antenna, a))
-                # print(add_vector(vector(antenna, a), a))
                 antinode = add_vector(vector(antenna, a), antenna)
                 while not out_of_map(map, antinode[0], antinode[1]):
                     antinodes.add(antinode)
