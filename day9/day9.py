@@ -113,7 +113,6 @@ def star2():
         else:
             print("No suitable space")
     actual_disk = convert_disk_into_list(disk)
-    print(actual_disk)
     id_mult2(actual_disk)
 
 
