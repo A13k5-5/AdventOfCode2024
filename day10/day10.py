@@ -58,4 +58,28 @@ def star1():
     print(counter)
 
 
-star1()
+def recur2(mountains, cur_x, cur_y, counter):
+    curVal = mountains[cur_y][cur_x]
+    if curVal == 9 and (cur_x, cur_y):
+        counter[0] += 1
+        return
+    neighbours = get_neighbours(mountains, cur_x, cur_y)
+    for neighbour in neighbours:
+        if neighbour is None:
+            continue
+        neighbourVal = mountains[neighbour[1]][neighbour[0]]
+        if neighbourVal == curVal + 1:
+            recur2(mountains, neighbour[0], neighbour[1], counter)
+
+
+def star2():
+    mountains = load_input("input.txt")
+    start_coords = find_all_zeros(mountains)
+    counter = [0]
+    for start in start_coords:
+        cur_x, cur_y = start
+        recur2(mountains, cur_x, cur_y, counter)
+    print(counter)
+
+
+star2()
